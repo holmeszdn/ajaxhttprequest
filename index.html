@@ -74,7 +74,8 @@
 			verse = verse.toLowerCase();
 			let url = verse + '.txt';
 			
-			let request = new XMLHttpRequest();
+			// The following can be used for one way to do this
+			/*let request = new XMLHttpRequest();
 			request.open('GET', url);
 			request.responseType = 'text';
 			
@@ -82,8 +83,15 @@
 				poemDisplay.textContent = request.response;
 			}
 			
-			request.send();
+			request.send();*/
 				
+			
+			// The following can be used for another more efficient way to do this
+			fetch(url).then(function(response) {
+			  response.text().then(function(text) {
+				poemDisplay.textContent = text;
+			  });
+			});
 		};
 		
 		updateDisplay('Verse 1');
